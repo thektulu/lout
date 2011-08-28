@@ -1,0 +1,27 @@
+#product-info {
+product-name: "Lout";
+version: "3.39";
+original-source-location: "http://download.savannah.gnu.org/releases/lout/lout-3.39.tar.gz";
+original-source-website: "http://savannah.nongnu.org/projects/lout/";
+license: "GPLv3 or later";
+packager: "Mandeep Gill <mands@mands.me>";
+}
+
+default {
+    targets: {
+        "lout.exe",
+		"prg2lout.exe",
+    };
+    build-command:@"
+        rem best you have your visual studio installed in the default location...
+        IF EXIST ""C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\vcvarsall.bat"" call ""C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\vcvarsall.bat"" x86
+        IF EXIST ""C:\Program Files\Microsoft Visual Studio 10.0\VC\vcvarsall.bat"" call ""C:\Program Files\Microsoft Visual Studio 10.0\VC\vcvarsall.bat"" x86
+		nmake -f makefile.win all		
+    ";
+    clean-command:@"
+		rem best you have your visual studio installed in the default location...
+		IF EXIST ""C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\vcvarsall.bat"" call ""C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\vcvarsall.bat"" x86
+		IF EXIST ""C:\Program Files\Microsoft Visual Studio 10.0\VC\vcvarsall.bat"" call ""C:\Program Files\Microsoft Visual Studio 10.0\VC\vcvarsall.bat"" x86
+		nmake -f makefile.win clean > nul 2> nul
+    ";
+}

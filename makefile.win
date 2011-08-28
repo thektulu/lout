@@ -1,0 +1,67 @@
+###############################################################################
+#                                                                             #
+#  Make file for Win32 build using CoApp                                      #
+#                                                                             #
+#  please read orginal Makefile for full options                              #
+###############################################################################
+
+OSUNIX  = 0
+OSDOS   = 1
+OSMAC   = 0
+
+DBFIX   = 0
+
+USESTAT = 1
+SAFEDFT = 1
+
+DEBUGGING = 0
+TRACING =
+
+# DEBUGGING = 1
+# TRACING = -g
+
+PREFIX	= C:\apps
+BINDIR	= $(PREFIX)\bin
+LOUTLIBDIR	= $(PREFIX)\lib\lout
+LOUTDOCDIR	= $(PREFIX)\doc\lout
+MANDIR	= $(PREFIX)\man\lout
+
+LIBFONT = font
+LIBMAPS = maps
+LIBINCL = include
+LIBDATA = data
+LIBHYPH = hyph
+LIBLOCA = locale
+
+CHARIN	= 1
+CHAROUT	= 0
+
+USELOC	= 0
+LOC_FR	= fr
+LOC_DE	= de
+
+COLLATE	= 1
+
+PDF_COMPRESSION	= 0
+
+CC	= cl
+
+COPTS	= /O2 /TC
+
+CFLAGS	= /DOS_UNIX=$(OSUNIX) /DOS_DOS=$(OSDOS)	/DOS_MAC=$(OSMAC) /DDB_FIX=$(DBFIX) /DUSE_STAT=$(USESTAT) /DSAFE_DFT=$(SAFEDFT) \
+	/DCOLLATE=$(COLLATE) /DLIB_DIR=\"$(LOUTLIBDIR)\" /DFONT_DIR=\"$(LIBFONT)\" /DMAPS_DIR=\"$(LIBMAPS)\" /DINCL_DIR=\"$(LIBINCL)\" \
+	/DDATA_DIR=\"$(LIBDATA)\" /DHYPH_DIR=\"$(LIBHYPH)\" /DLOCALE_DIR=\"$(LIBLOCA)\" /DCHAR_IN=$(CHARIN) /DCHAR_OUT=$(CHAROUT) \
+	/DLOCALE_ON=$(USELOC) /DASSERT_ON=1 /DDEBUG_ON=$(DEBUGGING) /DPDF_COMPRESSION=$(PDF_COMPRESSION) $(COPTS)
+
+lout: z*.obj
+	link z*.obj /out:lout.exe
+
+externs.h:
+
+prg2lout:	prg2lout.c
+	$(CC) $(COPTS) prg2lout.c /link /out:prg2lout.exe
+
+all:	lout prg2lout
+
+clean:	
+	-del /f lout.exe prg2lout.exe *.obj
