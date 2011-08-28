@@ -1,0 +1,92 @@
+@Section
+   @Title { Typesetting computer programs as part of a larger document }
+   @Tag { embedded }
+@Begin
+@PP
+When the program texts are to be part of a larger Lout document,
+the procedure is somewhat different.  You need to include the setup file
+appropriate to your language, like this:
+@ID @OneRow @Code {
+"@SysInclude { cprint }"
+"@SysInclude { doc }"
+}
+The @Code cprint setup file includes everything needed to set up for C
+program formatting; for the other languages, consult the second column
+of the table at the start of this chapter.
+@PP
+The program texts within the Lout document are enclosed in braces
+preceded by the Lout symbol from the third column of the table, like
+this for the C language:
+@ID @OneRow @Code @Verbatim {
+@IndentedDisplay @CP {
+#include <stdio.h>
+
+treeprint(struct tnode *p)        /* print tree p recursively */
+{
+        if (p != NULL) {
+                treeprint(p->left);
+                printf(\%4d %s\\n\, p->count, p->word);
+                treeprint(p->right);
+        }
+}
+}
+}
+Although computer programs violate the rules of legal Lout input in many ways,
+these rules are suspended by the {@Code "@CP"}, {@Code "@Eiffel"} etc. symbols,
+allowing the program text to be incorporated with absolutely no
+modifications.  The result is
+@ID @OneRow @CP {
+#include <stdio.h>
+
+treeprint(struct tnode *p)        /* print tree p recursively */
+{
+        if (p != NULL) {
+                treeprint(p->left);
+                printf("%4d %s\n", p->count, p->word);
+                treeprint(p->right);
+        }
+}
+}
+We have chosen to use the @Code "@IndentedDisplay" symbol from Section
+{@NumberOf displays} to obtain an indented display, but in fact
+{@Code "@CP"}, {@Code "@Eiffel"} and the rest may appear anywhere at
+all:  the result is an object in the usual way, which may go
+anywhere.
+@PP
+It is quite normal to include fragments of programs, particularly
+identifiers, within paragraphs; this is done in the obvious way:
+@ID @OneRow @Code @Verbatim {
+Calling @CP { remove_cooling_rods() } without checking @CP { temp } first
+is not recommended since it may cause the reactor to melt down.
+}
+Use @Code "@OneCol @CP { ... }" (or @Code "@OneCol @Eiffel { ... }" etc. for
+other languages) to prevent the program text being broken across two lines,
+if desired.  Hyphenation is on by default in computer programs; however,
+the current language is changed from @Code English or whatever to
+{@Code Programming}, whose hyhenation rules permit hyphenation after
+an underscore character or between a preceding lower-case letter
+and a following upper-case letter, but not elsewhere.
+@PP
+In cases where the program text has unbalanced braces, it is necessary to
+programs. @RawIndex { programs }
+programs.braces @SubIndex { braces in }
+braces. @RawIndex { braces }
+braces.in.program @SubIndex { in program formatting }
+use the alternative form @Code "@CP @Begin ... @End @CP" (or the
+equivalent for other languages), so that Lout does not confuse program
+braces with Lout braces.  In that case the program text must not
+contain {@Code "@End"}; and in either case the program text must not
+include @Code "@Include" or @Code "@SysInclude" unless you are really
+including a file at that point (Section {@NumberOf pipes}).
+@PP
+If your Lout document contains program texts in several languages,
+simply add one @Code "@SysInclude" line for each of them and proceed
+as before.  If your programming language is not currently supported,
+a viable alternative is
+@ID @Code "@F @Verbatim { ... }"
+This causes the text between braces to be set verbatim in
+a fixed-width font, as explained elsewhere in this guide.  This
+method will not handle tab and formfeed characters very well.  Again,
+use @Code "@Verbatim @Begin ... @End @Verbatim" if your program text
+contains unbalanced braces.
+@End @Section

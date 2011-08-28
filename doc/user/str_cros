@@ -1,0 +1,233 @@
+@Section
+   @Title { Cross references and links }
+   @Tag { cross }
+@Begin
+@PP
+Cross references are a useful feature of documents, but they are a
+cross.ref @Index { cross references }
+problem for authors.  Suppose that at one point of your document
+you have
+@ID @OneRow @Code {
+"We hold these truths to be self-evident, that all men are created equal,"
+"that they are endowed by their Creator with certain inalienable Rights,"
+"that among these are Life, Liberty, and the pursuit of Happiness..."
+}
+and that at some other point, earlier or later, you have
+@ID @OneRow @Code {
+"The anti-slavery cause, founded as it was on the Declaration"
+"of Independence (page 181), could appeal to patriotic as"
+"well as moral sentiments..."
+}
+This is a @I { cross reference }, and the problem is that as the document
+is revised, the Declaration of Independence might move to page 185, and
+the cross reference must be found and changed.
+@PP
+Lout has a simple solution to this problem.  Instead of writing the
+pageof. @Index @Code "@PageOf"
+page number, write
+@ID @OneRow @Code {
+"The anti-slavery cause, founded as it was on the Declaration"
+"of Independence (page @PageOf { decl.of.ind }), could appeal to"
+"patriotic as well as moral sentiments..."
+}
+instead, and at the point referred to, write
+pagemark. @Index @Code "@PageMark"
+@ID @OneRow @Code {
+"We @PageMark decl.of.ind hold these truths to be self-evident, that..."
+}
+Inserting @Code "@PageMark decl.of.ind" will not affect the result,
+but Lout makes a note of the number of the page on which the word
+preceding it appears, and inserts that number in place of
+{@Code "@PageOf decl.of.ind"}.  The tag, {@Code "decl.of.ind"}, may be
+any simple word (actually Lout will accept a multi-word tag, but they
+are very inconvenient and better avoided).  The braces are there, as
+usual, to control grouping:  we don't want the following punctuation
+characters in the tag.
+@PP
+One tag called @Code "last.page" is created automatically
+"last.page.tag" @Index { @Code "last.page" tag }
+for you.  @Code "@PageOf last.page" gives the number of the last page
+of the document.  For example, the result for this document is
+{@PageOf last.page}.
+@PP
+Cross referencing also applies to large-scale structure symbols such as
+@Code "@Chapter" and @Code "@Section" (any symbol with a @Code "@Title"
+option), as well as @Code { "@FootNote" }, @Code { "@EndNote" },
+@Code { "@Figure" }, @Code { "@Table" }, @Code { "@Floater" }, the
+numbered display symbols, and @Code "@ListItem" and @Code "@DropListItem"
+(but not @Code "@TagItem" and {@Code "@DropTagItem"}).  Each of these
+symbols has a @Code "@Tag" option:
+tag.option. @Index { @Code "@Tag" option }
+@ID @OneRow @Code {
+"@Section"
+"   @Title { Cross references }"
+"   @Tag { cross }"
+"@Begin"
+"@PP"
+"Cross references are a useful ..."
+}
+Now you can use the @Code "@PageOf" symbol to find the
+number of the page on which the symbol's result begins, and the
+@Code "@NumberOf" symbol to find its number:
+numberof. @Index @Code "@NumberOf"
+@ID @OneRow @Code {
+"For further information on this point, please consult"
+"Section @NumberOf cross (page @PageOf { cross })."
+}
+produces
+@QD {
+For further information on this point, please consult
+Section @NumberOf cross (page @PageOf { cross }).
+}
+For symbols with a @Code "@Title" option (chapters, sections, etc.)
+or a @Code "@Caption" option (@Code { "@Figure" }, @Code { "@Table" },
+and @Code { "@Floater" }) there is also the @Code "@TitleOf" symbol,
+titleof. @Index @Code "@TitleOf"
+which returns the value of the @Code "@Title" or @Code "@Caption" option:
+@ID @OneRow @Code {
+"For further information on this point, please consult"
+"the @TitleOf { cross } section."
+}
+produces
+@QD {
+For further information on this point, please consult
+the @TitleOf { cross } section.
+}
+But this symbol won't work for footnotes, list items, and other
+things without a title or caption.
+@PP
+For those with more expertise in using Lout, there is a
+pageparityof. @Index @Code "@PageParityOf"
+@Code "@PageParityOf" symbol which is very similar to @Code "@PageOf"
+except that it returns one of the two words @Code "Odd" and @Code "Even"
+instead of a page number, indicating whether the object it references is
+printed on an odd or even page.  For example, @Code "@PageParityOf cross"
+produces @Code {@PageParityOf cross}.
+@PP
+Like all tags, the value of the @Code "@Tag" option should be a simple
+word (although Lout does accept multi-word tags).  Cross referencing of
+list items yields just the number of the item, in Arabic, Roman, or
+whatever; it does not include the surrounding parentheses or other
+decorations introducted by the list's @Code "style" option.
+@PP
+To work cross references out, Lout has to process your document more
+multiple.runs @Index { multiple runs, why needed }
+than once, storing information between runs in special files it
+creates whose names end in @Code ".li" and {@Code ".ld"}.
+A complex document like this Guide requires five runs, but since every
+run produces a perfectly good PostScript file suitable for proof reading,
+in fact you need two runs to start with and one run per cycle of revision
+thereafter, only one more than would have been necessary in any case.
+@PP
+The cross referencing system assumes that each Unix directory contains
+directories @Index { directories, Lout files and }
+only one Lout document (possibly spread over many files).  If you keep
+several documents in one directory you can turn off the cross referencing
+with the @Code "-s" flag:
+@ID @Code "lout  -s  simple  >  simple.ps"
+Since this will cause question marks to replace footnote and section
+numbers, and other products of cross referencing, it is only feasible
+for simple documents.  Alternatively, you can reset cross referencing
+when switching from one document to another, by removing file
+lout.li @Index { @Code lout.li file }
+{@Code "lout.li"}.  You should also remove this file if your document
+changes radically -- from a report to a book, say.
+@FootNote {
+An unfortunate and long-standing bug causes Lout to crash occasionally
+when reading from a cross-reference database
+file that it wrote on the preceding run.  The problem has to do with
+mistakenly taking a literal word, or part of such a word, as an invocation
+of a symbol.  The crash will occur on the @I second run (because the
+database file is written, not read, on the first run), and might be
+accompanied by an error message mentioning routine @I { AttachEnv } or
+@I { SetTarget }.  You can make it happen, for example, by including
+@ID @Code "pnformat @Index { watch me crash! }"
+in your document -- the @Code pnformat tag, a literal word, will be
+mistaken for the @Code pnformat option of @Code "@Index" by the
+database reader.  If this problem appears, try enclosing tags that you
+entered recently in double quotes.  Enclosing @Code pnformat above
+in double quotes fixes the example problem.
+}
+@PP
+PDF viewers and recent versions of PostScript viewers offer a high-tech
+version of cross references called {@I links}, which allow the user to
+click on, say, the entry for a section in a table of contents and be
+immediately transported to the page on which that section begins.  In
+principle, anything could happen when a link is clicked on, but Lout
+only offers two kinds of links:  @I { internal links } that transport
+the user to some page in the current document, and @I { external
+links } that transports the user to a URL location on the World Wide Web.
+@PP
+Lout automatically makes an internal link out of every page number it
+prints in the table of contents and in the index, and every reference
+citation.  You can also insert your own links, using the
+@Code "@CrossLink" symbol like this:
+@ID @Code "See cross @CrossLink { Section @NumberOf cross }"
+The @Code "@CrossLink" symbol consumes two objects, one to its left and the
+other to its right, and we'll explain each of these now.
+@PP
+The object on the right (@Code "Section @NumberOf cross" in our
+example) can be an arbitrary Lout object:  you don't have to have
+@Code "@NumberOf" or @Code "@PageOf" inside it, although in practice
+you often will, since it makes sense to put a low-tech link wherever
+you have a high-tech one, for the benefit of readers of paper
+versions.  This object on the right is what is printed, so the
+overall result in this example is
+@ID { See cross @CrossLink { Section @NumberOf cross } }
+But, beyond this, clicking anywhere on this object on the screen will
+invoke the link, transporting the user to some other page.
+@PP
+The object on the left (@Code cross in our example) must be a tag
+that is acceptable to the @Code "@PageOf" symbol described earlier
+in this section.  The link will transport the user who clicks on
+it to the page that @Code "@PageOf" would point to if given that
+tag.  You can ensure that your tag is acceptable in the usual
+ways:  by using {@Code "@PageMark"}, or by giving the tag as the
+@Code "@Tag" option of a chapter, section, etc. as described earlier
+in this section.
+@PP
+A moment ago we said that the object to the right of @Code "@CrossLink"
+is what is printed by the @Code "@CrossLink" symbol.  This is true by
+default, but there is a @Code "@CrossLinkFormat" option in the setup
+files which allows you to change the appearance of this printed
+object.  (See Section {@NumberOf setup} for a general description
+of setup files and their options.)  The default value of
+@Code "@CrossLinkFormat" is
+@ID @Code "@CrossLinkFormat { @Body }"
+Within the @Code "@CrossLinkFormat" option, the @Code "@Body" symbol
+stands for the object to the right of {@Code "@CrossLink"}.  It is
+actually the value of @Code "@CrossLinkFormat" that is printed, so,
+for example, changing it to
+@ID @Code "@CrossLinkFormat { blue @Colour @Underline @Body }"
+causes all link objects to be printed in blue and underlined.  If
+you want a special format just for one link, there is a @Code "@Format"
+option to @Code "@CrossLink" that overrides {@Code "@CrossLinkFormat"}:
+@ID @Code "cross @CrossLink @Format { @CurveBox @Body } { Section @NumberOf cross }"
+You can also give the formatting you want directly, since the object
+to the right of @Code "@CrossLink" can be an arbitrary Lout object:
+@ID @Code "cross @CrossLink @CurveBox { Section @NumberOf cross }"
+However, in this form the @Code "@CrossLinkFormat" setup file option
+is still applied.
+@PP
+External links are obtained in much the same way as internal ones,
+except that the symbol to use is @Code "@ExternalLink" and instead
+of supplying a tag, you need to supply a URL:
+@ID @Code {
+"\"http://lout.wiki.sourceforge.net/\" @ExternalLink { Lout Home Page }"
+}
+Once again the result is the object to the right, modified by any
+@Code "@Format" option; and there is an {@Code "@ExternalLinkFormat"}
+setup file option that works in the same way as
+{@Code "@CrossLinkFormat"}.  This time, though, the effect is to
+jump right out of your document to the given place on the World
+Wide Web, assuming that the software you are using to display your
+document is capable of such a thing.
+@PP
+At present, the @Code "@CrossLink" and @Code "@ExternalLink" symbols
+behave as though a @Code "@OneCol" symbol encloses the object to their
+right.  This means that that object is kept together on one line of any
+enclosing paragraph, and inter-word spaces within it are not adjusted
+along with the inter-word spaces of any enclosing paragraph.  This
+deficiency might be corrected in the future, but meanwhile it means
+that it is best to keep your objects on the right short.
+@End @Section

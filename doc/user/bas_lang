@@ -1,0 +1,127 @@
+@Section
+   @Title { Languages other than English }
+   @Tag { languages }
+@Begin
+@PP
+When part of a document is written in a language other than English,
+languages. @Index { languages other than English }
+Lout should be informed of this using the @Code "@Language" symbol:
+language. @Index @Code "@Language"
+@ID @OneRow @Code {
+"... the garter, he said:  French @Language { `Honi soit qui mal y"
+"pense' }, and this saying ..."
+}
+Changing language is quite analogous to changing font using the
+@Code "@Font" symbol.
+@PP
+At the time of writing, the following languages were available:
+@CD @OneRow @Tbl
+    aformat { @Cell ml { 0i } @Code A | @Cell mr { 0i } @Code B }
+    mv { 0.5vx }
+{
+@Rowa
+    A { Croatian Hrvatski }
+    B { Italian Italiano it }
+@Rowa
+    A { Czech Cesky Cestina cs }
+    B { Norwegian Norsk no }
+@Rowa
+    A { Danish Dansk da }
+    B { Polish Polski pl }
+@Rowa
+    A { Dutch Nederlands nl }
+    B { Portuguese Português pt }
+@Rowa
+    A { English en }
+    B { Programming }
+@Rowa
+    A { EnglishUK en-GB }
+    B { Russian ru }
+@Rowa
+    A { Esperanto eo }
+    B { Slovak Slovensky Slovencina }
+@Rowa
+    A { Finnish Suomi fi }
+    B { Slovenian Slovenia Slovenija sl }
+@Rowa
+    A { French Francais Fran{@Char ccedilla}ais fr }
+    B { Spanish Espa{@Char ntilde}ol es }
+@Rowa
+    A { German Deutsch de }
+    B { Swedish Svenska sv }
+@Rowa
+    A { Hungarian Magyar hu }
+    B { UpperSorbian hornjoserbsce serbsce }
+}
+File @Code "include/langdefs" in the distribution always has the exact
+list of known languages.  As shown, most languages have alternative
+names, all equally acceptable to the @Code "@Language"
+symbol.  @Code "EnglishUK" differs from @Code "English" only by applying
+hyphenation rules said to be more appropriate for British English;
+@Code "Programming" is for programming languages and is used by the 
+symbols of Chapter {@NumberOf cprint}.
+@PP
+Since accented characters (Section {@NumberOf characters}) are always
+available irrespective of the language, at first sight it might seem
+that there is no need to bother informing Lout what language you are
+writing in.  However, words are hyphenated differently depending on the
+hyphenation.languages @SubIndex { in languages other than English }
+language, and some symbols have different results in different
+languages.  For example,
+@ID @Code "Danish @Language @Date"
+produces
+@ID { Danish @Language @Date }
+date.languages @SubIndex { in languages other than English }
+time.languages @SubIndex { in languages other than English }
+lists.languages @SubIndex { in languages other than English }
+and the alphabetic list symbols of Section {@NumberOf lists} also
+vary with the current language.  So it's worth doing for the sake of
+knowing that non-English parts will appear as they should.
+@PP
+If your entire document is in a language other than English, you need
+to change the @Code "@InitialLanguage" option:
+initiallanguage. @Index @Code "@InitialLanguage"
+@ID @Code "@InitialLanguage { Deutsch }"
+If you are using your own setup file (Section {@NumberOf setup}), you
+can change it there.  If not, you can change it at the start of your
+document, as explained in Section {@NumberOf ordinary}.
+@PP
+Czech, Polish, and Slovenian (at least) use the Latin2 character set,
+and users of these languages have to place
+@ID @Code "@SysInclude { latin2 }"
+at the start of their documents in order to get access to the
+Latin2 versions of the fonts.
+@FootNote { Prior to Version 3.21 of Lout, some accented characters
+were missing from these Latin2 fonts, but this deficiency has now
+been corrected by getting Lout to generate output for these characters
+which prints their base letter and accent separately. }  These have
+family names such as TimesCE, CourierCE, HelveticaCE, and so on (CE
+standing for Central European), to distinguish them from the same
+fonts encoded in Latin1.  The face names are unchanged.  A typical
+Latin2 document would therefore start off like this:
+@ID @OneRow @Code {
+"@SysInclude { latin2 }"
+"@SysInclude { doc }"
+"@Document"
+"    @InitialLanguage { Polish }"
+"    @InitialFont { TimesCE Base 12p }"
+"//"
+}
+Depending on the document type there may be a few other font-setting
+options in the setup file that need to be changed; in fact, it might be
+best to produce your own setup file in this case, replacing {@Code "doc"},
+with the changed options in it.  See Section {@NumberOf setup} for how
+to do this.  You could even start your setup file off with
+@Code "@SysInclude { latin2 }" to avoid the trouble of typing it at
+the top of every document.  Consult database file @Code "latin2.ld"
+in the standard database directory for a complete list of Latin2 fonts.
+@PP
+Russian uses Cyrillic characters.  In principle, users of Russian
+have to place
+@ID @Code "@SysInclude { russian }"
+at the very start of their documents in order to get access to
+Cyrillic fonts.  However no such fonts are distributed
+with the current version of Lout, so this line does nothing at
+present.  Other left-to-right languages are easily added, so
+consult the author if your language is not listed.
+@End @Section

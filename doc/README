@@ -1,0 +1,20 @@
+Directory lout/doc
+
+This directory contains directories holding the four documents
+that describe the Lout document formatting system:
+
+design	`The design and implementation of the Lout document
+	formatting language,' Software--Practice and Experience,
+	vol. 23, pp1001-1041 (September 1993)
+
+expert	An Expert's Guide to the Lout Document Formatting System
+
+slides	A Practical Introduction to the Lout Document Formatting
+	System (overhead transparencies)
+
+user	A User's Guide to the Lout Document Formatting System
+
+The author of these documents, Jeffrey H. Kingston, owns the
+copyright in them.  He gives permission for them to be
+copied and modified freely, provided that his authorship
+is acknowledged in any documents derived from these ones.

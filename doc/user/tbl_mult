@@ -1,0 +1,154 @@
+@Section
+    @Title { Multi-page tables }
+    @Tag { tbl_mult }
+@Begin
+@PP
+The tables produced by @Code "@Tbl" permit page breaks (including breaking
+tables. @RawIndex { tables }
+tables.multipage @SubIndex { multi-page }
+multi.page.tables @Index { multi-page tables }
+to a new column) between every two rows, except rows that have a
+vertically spanning cell in common.  Page breaks cannot occur
+within rows.  The choice of page breaks can either be left to Lout,
+or it can be forced by placing the new page symbol @Code "@NP" between two
+tables. @RawIndex { tables }
+tables.np @SubIndex { @Code "@NP" (new page) in }
+np. @RawIndex { @Code "@NP" (new page) }
+np.in.tables @SubIndex { in tables }
+rows.
+@PP
+To prevent page breaks within a table, precede the @Code "@Tbl"
+symbol by {@Code "@OneRow"}:
+@ID @Code "@CD @OneRow @Tbl ..."
+@Code "@OneRow" is a general Lout symbol which binds the following
+object into a single, unbreakable row.  Make sure your table is
+small enough to fit on one page when you do this, otherwise an error
+message will be printed and it will be scaled to fit.  Display symbols
+like @Code "@CD" often have this effect anyway.
+@PP
+To prevent a page break between two particular rows, but not in
+general, replace the @Code "@Row" symbol of the second row with
+tables. @RawIndex { tables }
+tables.nobreakrow @SubIndex { @Code "@NoBreakRow" symbols }
+nobreakrow.tables @Index { @Code "@NoBreakRow" symbols (tables) }
+the corresponding @Code "@NoBreakRow" symbol (@Code "@NoBreakRowa"
+instead of {@Code "@Rowa"}, @Code "@NoBreakRowb" instead of
+{@Code "@Rowb"}, and so on).
+@PP
+Some care is needed over where to put multi-page tables.  They can't go
+within any of the display symbols, because display symbols are not clever
+enough to break tables between rows, even though they are sometimes able
+to break simpler displays.  (A display symbol will scale a very high table
+to fit on one page, and it will go wrong on a table containing
+{@Code "@NP"}.)  Multi-page tables can go inside @Code "@Figure" or
+@Code "@Table" symbols, because these symbols have been set up to accept
+multi-page objects.  Or they can go into the body text of the document
+at full width with a paragraph symbol before and after, like this:
+@ID @Code @Verbatim {
+@DP
+@Tbl ...
+@DP
+}
+An example of this kind of multi-page table appears in
+Section {@NumberOf tbl_summ}.  You can simulate an indent by means of an
+empty cell at the left of each row format, although in the author's opinion
+a multi-page table looks better at full width anyway.  Lout will expand the
+rightmost column to the full page width; one way to prevent this is to add
+a @Code "|" after the last cell within each {@Code format} option, creating
+an empty extra column.
+@PP
+One practical problem in multi-page tables is getting the rules
+right.  The simplest way to do this is to set @Code "rulehorizontal"
+to {@Code yes}.  This places a rule above every row including the
+first on each page, and a rule below every row including the last
+on each page.  There is nothing equivalent to running headers
+(described below) at the bottom of the page -- nothing that would allow
+you to insert a rule after the last line of each page, but not
+elsewhere.  (However, if you are using the @Code "@Table"
+symbol, its @Code "@Format" option can be used to do this.)
+@PP
+Another practical problem with multi-page tables is that of getting a
+heading over every page after the first.  This is easy if you know where
+the page breaks are going to fall (if you are using {@Code "@NP"}, for
+example), but you usually don't.  To solve this problem, @Code {"@Tbl"}
+offers the @Code "@HeaderRowa" ... @Code "@HeaderRowh" and
+tables. @RawIndex { tables }
+tables.headerrow @SubIndex { @Code "@HeaderRow" symbols }
+headerrow.tables @Index { @Code "@HeaderRow" symbols (tables) }
+@Code "@EndHeaderRow" symbols.  For example, the multi-page table in
+Section {@NumberOf tbl_summ} is arranged like this:
+@ID -1px @Break @OneRow @Code @Verbatim {
+@Tbl
+    ...
+{
+@Rowd
+    A { Option names }
+    B { Default in PS, PDF }
+    C { Default in plain text }
+    D { Allowed values }
+    rulebelow { yes }
+@HeaderRowd
+    A { Option names (ctd.) }
+    B { Default in PS, PDF }
+    C { Default in plain text }
+    D { Allowed values }
+    rulebelow { yes }
+@Rowa
+    A { paint  p }
+    B { none }
+    D { any colour from Section {@NumberOf colour} }
+...
+@Rowa
+    A { ruleplainchar  rpc }
+    C { . }
+    D { any simple word e.g. @Code + }
+    rulebelow { yes }
+@EndHeaderRow
+}
+}
+@Code "@HeaderRowd" is exactly like {@Code "@Rowd"}, except that the row is
+not printed at all where it occurs; instead, it is saved up and used as a
+running header on subsequent pages.
+@PP
+The @Code "@EndHeaderRow" symbol goes where a @Code "@Row" symbol might
+go.  Notice that it does not end with a letter between {@Code a} and
+{@Code h}, and that it has no options.  Its effect is to cancel the
+closest preceding @Code "@HeaderRowa" ... @Code "@HeaderRowh" symbol.
+If you forget it, the result is bizarre:  the header row will remain
+in effect, and then every page from this point on will have the running
+header, even though the table ended long before.
+@PP
+There may be any number of header rows saved up at any moment, all to be
+printed at the top of subsequent pages.  Having @Code "@EndHeaderRow"
+allows them to be `nested.'  For example,
+@ID -1px @Break @OneRow @Code @Verbatim {
+@HeaderRowa ...
+@HeaderRowb ...
+@EndHeaderRow
+@HeaderRowb ...
+@EndHeaderRow
+@EndHeaderRow
+}
+could be used in a table to say that the entire table has the first
+header row; and that the first part also has the second header row,
+but that subsequent parts of the table have their own, different
+second header row, but still the same first header row.
+@PP
+Certain kinds of objects are not allowed in header rows, and Lout will
+complain and quit if you try to put them there.  Galleys
+(e.g. {@Code "@FootNote"} and {@Code "@Index"}) are not allowed, nor are
+cross references (e.g. {@Code "@NumberOf"} and {@Code "@PageOf"}), nor
+are {@Code "@HExpand"}, {@Code "@VExpand"}, or {@Code "@Scale"} in the
+form that works out its own scale factor.  Spanning symbols
+({@Code "@StartHSpan"}, {@Code "@StartVSpan"} etc.) work well in header
+row formats, however.
+@PP
+Header rows have some other peculiarities, not likely to trouble
+the ordinary user but worth pointing out.  Header rows are taken
+account of by Lout when deciding column widths, whether they are
+actually printed or not.  Basser Lout copies running header rows
+into the table after each page break, with no check on whether the
+next page has enough space to accommodate them, so if your running
+headers are so high that there is no room for ordinary rows on the
+page after they are inserted, then the document will never end.
+@End @Section

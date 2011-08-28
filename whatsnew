@@ -1,0 +1,571 @@
+Changes and new features introduced in Version 3.04
+
+    Bug fixes
+    Underlining
+    Small capitals now work properly
+    More flexible reference formatting setup file options
+    List items and displays now break across page boundaries
+    Quick reference guide (Appendix A, User's Guide)
+    Version of @Eq that uses TeX's fonts
+    Numbered list items can be tagged and referred to using @NumberOf
+    Multi-paragraph figure captions and multi-page figures
+    Various micro changes to @Eq to improve appearance
+    Merged index entries, and better guidance on how to make an index
+    DOS portability (I hope), still working on Mac portability
+    Eiffel programming language printing
+    Multi-word tags and sorting keys permitted
+    Margin notes
+    `Bypass' symbols (fewer passes for computer-generated Lout source)
+    Arbitrary chapter heading and part heading layouts
+    Viewers like GhostView now show real page numbers
+    @Sup and @Sub symbols (similar to sup and sub in equations)
+    Slovenian language
+    ANSI C (getting closer and closer...)
+    @IncludeGraphic will now accept a compressed file e.g. filename.eps.gz
+    @Verbatim { ... } like in LaTeX.
+ 
+Changes and new features introduced in Version 3.05
+
+    Bug fixes
+    ANSI C (getting very very close...)
+    Removed call to system("sort"), which was causing porting problems
+    Optional list of tables and list of figures in books
+    More options and setup file options for fine-tuning tables and figures
+    Package for printing bar codes (see software directory)
+    Moved initialization of non-English error message files into makefile
+
+Changes and new features introduced in Version 3.06
+
+    Bug fixes
+    Czech
+    Plain text manual pages for people without troff
+
+Changes and new features introduced in Version 3.07
+
+    Bug fixes
+    @URL field added to references
+    @LongFootNote, @LongEndNote, @LongCaption stupidity removed
+    Matrices and delimiters in equations improved
+    Captions to figures and tables may be above or below
+    Theorems, definitions, claims, propositions, lemmas, corollaries, examples
+    Words like "Chapter" and "Theorem" may be changed by the user
+    Numbered displays have been re-implemented and are much improved
+    @RightDisplay symbol
+    @F symbol added as synonym for { Courier Base -1p } @Font ...
+    Ability to set simple document options in the command line
+    Horizontal galleys (for expert users)
+    Drop capitals (large capitals in top left corner of paragraph)
+    Optimal body text breaking (makes large in-line displays more practical)
+    More flexible control of the format of chapter, section etc. headings
+    Option for starting chapters etc. on any, odd, or even pages
+    Command line option -S for safe execution (prohibits calls to system())
+    Symbols for up to three independent indexes at the end of each document
+    References work now when the citation point is after the reference list
+    Placement of objects at arbitrary points on the page
+    Reference lists may be before or after appendices
+    Choice of nine locations for figures and tables (page top, foot, etc.)
+    Numbering of footnotes works properly in all unusual cases now
+    Database index files created afresh automatically if system has stat()
+    Choice of rules for spaces between words (like Lout, troff, or TeX)
+    Spacing in equations (both eq and teq) further improved
+    Kerning of accented characters deduced from corresponding unaccented ones
+    @NotRevealed symbol (for expert users)
+    Another, hopefully better attempt made at Latin-2 formatting
+
+Changes and new features introduced in Version 3.08
+
+    Bug fixes
+
+Changes and new features introduced in Version 3.09
+
+    Bug fixes
+    French hyphenation
+    foll_or_prec works in all cases now, not just galleys (for expert users)
+    @Enclose symbol (for expert users)
+    Multi-page figures and tables can be boxed (revised @Format option)
+    Optimal paragraph breaker has been tuned to discourage widow words,
+      and to hyphenate more paragraphs but use fewer hyphens when it does
+    More consistent set of setup files since all now derived from one master
+    Setup files "doc" and "report" now work with plain text output
+    Unpaginated (continuous) plain text output
+    @FirstChapterNumber, @FirstSectionNumber etc. options in setup file
+    Alternative error message format (filename:linenum:colnum: ...)
+    Newline no longer needed at end of file
+    New diagram drawing package called Diag (replaces Fig):
+      many new link types; trees; labelled nodes and links; many useful options
+    New "oragged" paragraph breaking style, combines ragged and outdent
+    Comprehensive usage message printed by "lout -u"
+    Horizontal spacing of subscripts in equations (both eq and teq) improved
+
+Changes and new features introduced in Version 3.10
+
+    Bug fixes
+    @StructPageNums option for pages numbered by section
+    Dot between section (etc.) numbers and title made optional
+    Updated version of lout.teq (TeX-style equation formatter)
+    EvenPageTop and EvenFullPage figure and table locations
+    @Graph options for plotting values in decreasing order
+    References may cite other references now (bug fix)
+    Installation option for making "lout -S" the default behaviour
+    @E symbol added alongside @Eq as synonym for @OneCol @Eq
+    New language EnglishUK which is like English but with UK hyphenation rules
+    @AnotherFootNote symbol for consecutive footnotes on one word
+    LOUTLIB env variable determines library directory at run time if set
+    Lots of arrow symbols added to eq and teq
+    Paragraph gaps may have "u" suffix, meaning unbreakable (for expert users)
+
+Changes and new features introduced in Version 3.11
+
+    Bug fixes
+    Sorting collation sequence may be locale-specific if desired
+    Changed paragraph breaker, no longer calls the notorious CorrectOversize
+    Word count feature (see manual entry, -w)
+    Italian language
+    Fix for the long-standing bug in database file reading on DOS-like systems
+
+Changes and new features introduced in Version 3.12
+
+    Bug fixes
+    @CurrFamily and @CurrFace symbols similar to @CurrLang (for expert users)
+    @II symbol for getting italics right in headings and tables of contents
+    @Graph now has rticks option for ticks on right-hand side of frame
+    PDF (Adobe Portable Document Format) back end (command line flag -Z)
+    Latin2 and Russian are now part of the main Lout distribution
+    Changed license from GNU General Public License Version 1 to Version 2
+
+Changes and new features introduced in Version 3.13 [released February 1999]
+
+    Bug fixes
+    Gaps between galley components may have "u" (unbreakable) suffix, meaning
+      that the galley may not be broken at this gap (for expert users)
+    @StartHSpan, @StartVSpan, @StartHVSpan, @HSpan, @VSpan (spanning cols, rows)
+    unbreakablefirst @Break and unbreakablelast @Break (stops widows, orphans)
+    named parameters may import their parent, like body parameters (expert)
+    definitions and named parameters may have multiple names (expert)
+    @OneOf symbol chooses result that contains desired galley target (expert)
+    @HLimited, @VLimited symbols for further control over use of space (expert)
+    @ListInterruptItem and @ListNewPage: interrupts, page breaks between items
+    @Verbatim symbol now built-in, so no longer limited to Unix
+    @RawVerbatim like @Verbatim but preserves initial spaces on first line
+    0rt gap for left justification of the preceding object (expert)
+    @Background symbol for printing one object in the background of another
+    Maximum depth of @Includes increased from 7 to 10
+    New table formatting package, see User's Guide (old one is still there)
+    New @Meld symbol for better melding of index entries (expert)
+    Option to @FootNote for choosing your own footnote label
+    Optional full-width abstracts in technical reports
+    Hungarian language including Hungarian-specific heading formats
+
+    *** IMPORTANT: TWO CHANGES THAT ARE NOT UPWARDLY COMPATIBLE ***
+
+    (1)  The @Abstract symbol in technical reports now comes before the
+	 // symbol, not after it.  See User's Guide for details.
+
+    (2)  Setup file arrangements have changed.  You now need to have one
+	 @SysInclude line for each package you use.  For example,
+
+	    Previous versions           Version 3.13
+	    ---------------------------------------------
+
+	    @SysInclude { eq }          @SysInclude { eq }
+	    @SysInclude { ddoc }        @SysInclude { diag }
+				        @SysInclude { doc }
+
+         Import clauses in mydefs files also have to change:
+
+	    Previous versions           Version 3.13
+	    ---------------------------------------------
+
+            import @DocumentLayout      import @BasicSetup
+	    import @CPrint              import @CPSetup
+	    import @DiagramPrint        import @DiagSetup
+
+         Sorry for the inconvenience, but the old system was inconsistent
+	 and was tending towards an unsustainable combinatorial explosion
+	 of setup files.  No changes *within* documents are needed, and
+	 these new arrangements do not affect the content of the packages.
+	 The user's guide documents it all.
+
+Changes and new features introduced in Version 3.14 [released March 1999]
+
+    Bug fixes
+    "lout -PDF" now available as alternative to "lout -Z"
+    Cross referencing list items yields just the raw item number now
+
+Changes and new features introduced in Version 3.15 [May 1999]
+
+    Bug fixes
+    @FootNoteFormat option for controlling format of footnotes
+    @TheoremFormat option for controlling format of theorems (etc.)
+    @ListOuterGap setup file option for space before and after lists
+    Standardized and improved "slides" package, incl. new setup file options
+      (NB please send me @Word&&lecture and @Word&&overhead in your language)
+    Faster database reading (uses more memory though); prevent with -M
+    @DoubleLine symbol in diagrams for drawing a double line
+    -l and -L flags for selecting collation order (see lout -u)
+
+Changes and new features introduced in Version 3.16 [28 May 1999]
+
+    Bug fixes
+    Optimal paragraph breaking weights adjusted yet again (sigh)
+
+Changes and new features introduced in Version 3.17 [13 September 1999]
+
+    Bug fixes
+    @AtEnd option for @Book and @Report (unnumbered back cover page)
+    @Abbreviations symbol in books (like @Introduction but for abbreviations)
+    @Euro symbol added for getting a European Currency symbol
+    Document OBJECT struct declaration in externs.h (for gurus only)
+
+Changes and new features introduced in Version 3.18 [26 February 2000]
+
+    Bug fixes (more than usual, somehow)
+    New @CurrYUnit and @CurrZUnit symbols (expert users)
+    @Diag enhancement:  node types, similar to row types in @Tbl
+    @Diag enhancement:  new features for drawing syntax diagrams
+    Portuguese (thanks to Jose Roberto B. de A. Monteiro)
+    Slight change to @Tbl spec (affects aligned columns)
+    Replaced c2lout with prg2lout (computer program formatting)
+    @Outline symbol for printing words in outline rather than filled
+    A few extra @Eq symbols:  filledcircle, small, trieq
+
+Changes and new features introduced in Version 3.19 [9 March 2000]
+
+    Bug fixes
+    Four @HeaderComponent symbols for running headers (expert users)
+    Running headers in multi-page tables
+    Running headers in indexes
+    Two extra @Eq symbols:  triangleup, triangledown
+
+Changes and new features introduced in Version 3.20 [8 April 2000]
+
+    Bug fixes (including the internal error that was dumping core recently)
+    Multi-line style changes (@I, @Colour etc.) now work in lines @Break mode
+    @Perl symbol for Perl programming language formatting (includes Pod)
+
+Changes and new features introduced in Version 3.21 [10 May 2000]
+
+    Bug fixes (including an old problem of bits lost from programs in tables)
+    Refinements to @Perl symbol for Perl programming language formatting
+    Program texts can now be formatted with line numbers added
+    -V now tells about PDF compression and whether debug output is available
+    "Page body margins" for indenting of page body wrt headers and footers
+    Margin notes code updated to work as desired with the new page body margins
+    @PageEnclose symbol generalizes @PageBox (enclose each page in anything)
+    Robustness wrt Linux strcoll() improved (tab characters no longer compared)
+    "Abstract" word in tech reports now centred again by default
+    Lout now builds composite characters - see Expert's Guide, under @Font
+
+    *** IMPORTANT: ONE CHANGE THAT IS NOT UPWARDLY COMPATIBLE ***
+
+    If you are using your own setup file, then it is likely to contain the
+    line "@SysInclude { fontdefs }".  There is no longer a fontdefs file,
+    there is now a fontdefs database, so you need to replace this line with
+    "@SysDatabase @FontDef { fontdefs }".
+
+Changes and new features introduced in Version 3.22 [3 June 2000]
+
+    Bug fixes
+    More setup file options for controlling the appearance of reports
+    Makefile now explicitly explains how to compile with debugging on/off
+    Added quotesinglebase, quotedblbase, ellipsis to LtLatin2.LCM file
+    Object-oriented back end (of interest to implementors only)
+    Chapters without page breaks option (see @ChapterStartPages, User's Guide)
+    Font includes all in page setups now (of interest to implementors only)
+
+Changes and new features introduced in Version 3.23 [24 June 2000]
+
+    Bug fixes, including Uwe's fix of the nasty bug reported by Matej Cepl,
+      and my fix of a table running headers bug reported by Matthew Neumann.
+    Cross links (see User's Guide, Cross References and Links section)
+    New symbols for expert users: @LinkSource and @LinkDest
+    @Python symbol for typesetting Python programs using prg2lout.
+
+Changes and new features introduced in Version 3.24 [8 October 2000]
+
+    Bug fixes, including a new and better fix for table running headers bugs
+
+Changes and new features introduced in Version 3.25 [December 2001]
+
+    Bug fixes
+    Finnish additions
+    Croatian, Slovakian, Upper Sorbian
+    Outdent is now settable e.g. { setoutdent 0.3f } @Break object
+    @InitialOutdent options for initializing outdent value
+    Updated barcodes package to work with recent Lout versions (@FontDef)
+    "downifneeded @Scale" like "{} @Scale" but will only scale down, not up
+    @F symbol yields a settable font, no longer hardwired to Courier
+    @TitleOf symbol e.g. "@TitleOf azaleas" similar to "@NumberOf azaleas"
+    @IndexText option to @Book etc., allows text just below Index title
+    References may be printed in order of first citation
+    New @Diag link types: @HVHLine, @HVHCurve, @VHVLine, @VHVCurve
+    "baselinemark @Font" option (mark along baseline rather than half x height)
+    @IncludeGraphicRepeated symbol: less output when EPS included repeatedly
+    Arbitrary colours in @Colour, @Tbl, @Diag, and @Graph, done consistently
+    Size of small caps can be set now e.g. "{ setsmallcaps 0.8 } @Font ..."
+    Got rid of boxes around links when PostScript converted to PDF
+    Revised end of sentence handling for some languages
+    Symbols for embedding clickable URLs into PostScript output
+
+    I've decided not to maintain the PDF back end, but I will try to ensure
+    that Lout's PostScript output works with PostScript-to-PDF converters.
+
+Changes and new features introduced in Version 3.26 [October 2002]
+
+    Fixed bug causing crash when breaking certain list items across pages
+    Merged index entries completely reimplemented
+    @DropTagItem (@DTI) now prevents page break after drop tag
+
+Changes and new features introduced in Version 3.27 [22 November 2002]
+
+    Fixes for all bugs, including table running headers and index headers
+    Repeated @PrependGraphic of same file allowed and ignored
+    Repeated @Include of same file of definitions allowed and ignored
+    Pie graphs (see new chapter of User's Guide)
+    Textures, a.k.a. patterns (see new section of Basic Graphics chapter,
+      and revisions to @Tbl, @Pie, @Diag, and @Graph chapters)
+    User's Guide no longer mentions @Diag lengths (1.2 cm, 0.5 ft etc),
+      although they are still available for backward compatibility
+    Arrowheads at opposite ends of a @Diag link now each have own style,
+      length, and width (NB this is marginally not upward compatible)
+    User's Guide now recommends "paint { none }" to get no paint, although
+      the old "nopaint" value is still available for backward compatibility
+    Any line anywhere can end in any of \n, \r, \r\n, or \n\r
+    26 more strings recognised as keywords in @CP C/C++ printing
+    Lots more named colours using Mark Summerfield's @Xrgb symbol
+    Glossaries, following a design by Thorsten Seitz
+    @IndexFormat, @SubIndexFormat, @SubSubIndexFormat options for
+      changing the format of index entries
+    @IndexSpacer and @IndexLetters - spacers (headers) within indexes
+    In @Diag, @Box and @ShadowBox now have NNW, NNE, SSW, and SSE tags
+    User's Guide has revised and larger (17-page) index
+
+Changes and new features introduced in Version 3.28 [December 2002]
+
+    Bug fixes
+    @Colophon symbol produces colophons in books
+    Nonpareil and Ruby programming languages supported by prg2lout
+    Eight-bit characters considered printable by prg2lout
+    "lout -t" ignores texture changes, for when tools don't support them
+    @Ding symbol (like @Sym) for dingbats
+    Dingbats fully documented in Chapter 1 of the User's Guide
+
+Changes and new features introduced in Version 3.29 [August 2003]
+
+    Fixed latest table running headers bug
+    @PageLabel value "?" usually now replaced by a guess at a page number
+    Index entry types (Ordinary, Main, Special) for index pagenum format
+    Haskell programming language support in prg2lout (ack Thorsten Seitz)
+    RSL programming language support in prg2lout (ack Darren Bane)
+    @OneOrBoth symbol added to syntax diagrams, for "X | Y | XY" grammar
+    New outlinestyle/pathstyle options for @Diag:  dotdashed, dotcdashed,
+      dotdotdashed, dotdotcdashed, dotdotdotdashed, and dotdotdotcdashed
+    New pairs options for @Graph: dotdashed, dotdotdashed, dotdotdotdashed;
+      plus @GraphDotDashed, @GraphDotDotDashed, @GraphDotDotDotDashed syms
+
+    Things not done
+
+      I may have promised to add dashed, dotted etc. options to @Tbl's
+	rules, but existing code does not lend itself to it, so I haven't.
+
+Changes and new features introduced in Version 3.30 [October 2004]
+
+   Bug fixes (H. K. Man's fix for PDF links, '' in Python, crashing
+     for some cases of "lout --option{value}")
+   Fixed bug with large page sizes.  Lout stores object sizes in 32-bit
+     integers, but smaller numbers (gap widths, shifts, character metrics
+     etc.) in 16-bit integers.  The left parameter of @Wide and @High was
+     erroneously being passed through a 16-bit variable.
+   Added A2 to list of page types (it works, too)
+   Reference new mailing list address
+   @HMirror and @VMirror symbols for reflecting objects
+   @IndexRangeFormat option for changing "from--to" format in indexes
+   "nolig @Font" for turning off ligatures in following object
+   @BeginSubPrefaces, @SubPreface, and @EndSubPrefaces symbols
+   @BeginSubIntroductions, @SubIntroduction, and @EndSubIntroductions symbols
+   @ParagraphItem symbol (like @ListItem but label integrated into paragraph)
+   Documented the danger of keeping valuable .ld files in source directories
+   Kerning now tries original characters before their unaccented versions
+   "@Graph style { grid }" replaces ticks in graphs with grid lines
+
+   Things not done
+
+      @CaptionGap not implementable since some gaps between figures and
+	captions are not accessible.  Try @FigureCaptionFormat.
+      Brazilian Portuguese declined on the grounds that it turned out
+        virtually identical to Portuguese Portuguese (convince me...)
+      I may have promised to add an "incontents" option to large-scale
+        structure symbols, which would allow them to opt out of the table
+	of contents.  On second thoughts I'm unwilling to do this.  I need
+	to be convinced that Lout should encourage this strange thing.
+
+Changes and new features introduced in Version 3.31 [August 2005]
+
+   Bug fixes:
+     Ludovic Courtes's fix for ligatures problem
+     Kingston and Piotrowski's fix for list number referencing problem
+     Fix for things adjacent to relations disappearing in program texts
+   Added @VStrut, @ZeroWidth, @ZeroHeight symbols to basic setup module
+   New User's Guide section ("Precise object placement") documenting
+     @VStrut, @ZeroWidth, @ZeroHeight, and similar already existing symbols
+   Improved rule for avoiding orphan section headings, following a
+     suggestion by Ludovic Courtes
+   Added @ChapterContentsIndent, @SectionContentsIndent etc. to setup files
+   Latin3 and Esperanto (contributed by Ludovic Courtes)
+   "Bullets" and "Symbols" footnote numbering styles (contributed by
+     Michael Piotrowski)
+   "marginkerning @Break" (contributed by Ludovic Courtes)
+   @E inline equation symbol now squeezes superscripts, more like TeX
+   "lout @Space" now used throughout program texts by default (can be
+     changed by setup file options)
+
+Changes and new features introduced in Version 3.32 [October 2006]
+
+   Bug fixes:
+      Uwe's problem of CRLF occurring on file block boundaries fixed, I hope
+      Ludovic's fix ensuring "rragged @Break" applies to isolated words
+      EPS files generated by Lout now safe to include in Lout documents
+   Multi-column lists (see List section of User's Guide for details)
+   Basic command-line errors print usage as well as error message
+   "break" option for lists, "@ListBreak" in setup file (Summerfield)
+   "labelright" list option, "@ListLabelRight" in setup file (Summerfield)
+   Peculiar behaviour of multi-paragraph table entries now documented
+   Some changes to the makefile (contributed by Greg Woods)
+   Options for the title page of overheads (contributed by Ludovic Courtes)
+   "blanklinescale" option to "@Break" (scales height of blank lines)
+   "blanklinescale" options in cprint, java etc.
+   "blanknumbered" option in cprint, java etc. (don't number blank lines)
+   "=head3" token added to Pod programming language
+   "-r" command line option, e.g. -r3 runs Lout three times
+
+Changes and new features introduced in Version 3.33 [November 2006]
+
+   "-w" command line option prints word count only on last "-r" run
+   prg2lout Python language updated to Python 2.5 (Mark Summerfield)
+   EPS files generated by Lout even safer to include in Lout documents
+   New @Diag link shapes: dhuline, dhucurve, uhdline, uhdcurve
+   "SHORT_LENGTH" data type removed from C code (cue general rejoicing)
+   A0 and A1 paper sizes added (and they *really* work)
+   "strut @Font" inserts an invisible vertical strut into each word under it
+   "font" option to "@List" etc., e.g. "@NumberedList font { strut }"
+   "@NewPage { Yes }" option to "@Section" etc. for properly spaced new page
+   "@Floater" symbol added (clone of "@Figure" and "@Table")
+
+Changes and new features introduced in Version 3.34 [March 2007]
+
+   Bug fixes:
+     New @Diag link shapes symbols now visible as they should be
+     Better handling of ellipsis (...) and similar tokens in Python
+     Font change in |{{Crystal Base 9p} @Font 4f} no longer ignored
+     Fixed bug causing cross reference database to occasionally add space
+   prg2lout Python language now implements @ token (Mark Summerfield)
+   &- now turns off hyphenation within immediately adjacent words
+   New "olines @Break" style combines "lines @Break" with outdenting
+   New @Pipe, @PipeVerbatim, and @PipeRawVerbatim symbols (Unix only)
+   In @Diag, "arrowstyle { solidwithbar }" for arrows like this: -->|
+   New @SetContext and @GetContext symbols for experts (Ludovic Courtes)
+   In @Diag, new @DNode and @ENode symbols like @ANode, @BNode, and @CNode
+     (also usable as @DCell and @ECell in syntax diagrams)
+
+Changes and new features introduced in Version 3.35 [April 2007]
+
+   Bug fix: @IncludeGraphicRepeated is working again, although it does
+     crash my printer (but fine with kghostview, evince, ps2pdf etc.)
+   Precedences and associativities now specifiable by invoking a macro
+   New @ColouredUnderline symbol makes coloured underlines
+   New "arrowstyle { many }" in @Diag makes "many"-relation arrowheads
+   New @HClip and @VClip symbols for clipping (see User's Guide)
+
+Changes and new features introduced in Version 3.36 [July 2007]
+
+   Bug fixes:
+      "lout -t" really does avoid textures completely now (Ludovic Courtes)
+      small patch (@PC becomes @PS) to prg2lout.c (Gabor Greif)
+      patch to haskellf (Gabor Greif)
+      changed haskellf symboloperators from "Symbol Base" to "Slope" (Kingston)
+   Lout now released under Version 3 of the GNU General Public License
+   Improved headings of numberless chapters/sections (Ludovic Courtes)
+   @BypassNumber option for numbered displays (Courtes/Kingston)
+   &- after "/" now hyphenates without inserting a hyphen, like &- after -
+   New @Math symbol (Courtes), will obsolete @Eq next release
+
+Changes and new features introduced in Version 3.37 [September 2008]
+
+   Bug fixes:
+      LinkDest x coordinate (reported by Man and Stott) fixed
+      @PipeRawVerbatim (reported by Summerfield) fixed
+      @Figure PageFoot location (reported by Summerfield) fixed
+      Rounding error in some uses of @Scale (reported by Courtes) reduced
+      Problem with null chars in EPS files reported & fixed by Cichelli/Bader 
+      In @Graph, problems with symbolsize option (reported by Garcia) fixed
+      Gap before inserted hyphens in Palatino (reported by van den Hoff) fixed
+      PostScript file %%BoundingBox problem (reported by van den Hoff) fixed
+   @BypassWord option for @Chapter added (Courtes)
+   @FontDef outside a database works now (but not recommended)
+   New @PageParityOf symbol like @PageOf but returns "Odd" or "Even"
+   New @PageNumberFormat setup file option (Courtes/Kingston)
+   New @InitialBackgroundColour setup file option (Courtes)
+   Updates to prg2lout.c for Haskell (Greif)
+   New @TitleFormat, @AuthorFormat, @InstitutionFormat, @DateLineFormat
+     slides setup file options (Courtes)
+   In @Diag, path { doubleline } now looks right with arrowstyles open,
+     halfopen, curvedopen and curvedhalfopen (problem reported by Carroll)
+   @ShadowBox still has no option for changing the colour of the shadow,
+     but the User's Guide now has an example showing how to simulate it
+   Increased z08.c/MAX_DEPTH to 2000 (Forkl hit previous limit)
+   @ContentsFormat setup file option now documented in User's Guide
+   Preface of User's Guide now advertises the Lout web page
+   Increased externs.h/MAX_LEX_STACK to 20 (Summerfield hit previous limit)
+   New symbollinewidth option in @Graph (line width for data points)
+   Inclusion of EPS files with previews now supported (Bader)
+   @TitleOf symbol now returns figure captions as well as chapter titles
+   Hyphenation on in programming languages, using new "Programming @Language"
+   New @DocInfo symbol (see User's Guide, Section 3.7)
+   @Math symbol (Courtes) has now replaced @Eq in User's Guide; @Eq is
+     still available for backward compatibility
+
+   I had one report that prg2lout was returning non-zero intermittently
+   during the formatting of the User's Guide.  I have not observed this
+   myself.  Presumably there is an uninitialized variable somewhere.
+   It's hard to do anything about this unless someone can get a core
+   dump so we can find out where in prg2lout.c the crash occurred.
+
+   Cichelli and Bader offered a patch to include PDF files by calling
+   a freeware program to convert them to EPS files and including the
+   EPS files.  I declined to include this in the standard release
+   because I felt that it could be done outside Lout, and because the
+   PDF support in Lout is not maintained and generally deprecated.
+
+   Strictly speaking, turning hyphenation on in programming languages
+   is not backward compatible.  I've done it because I have not been
+   able to think of a case where it would cause trouble.  If you find
+   a problem with it, please let me know.
+
+Changes and new features introduced in Version 3.38 [October 2008]
+
+   Bug fixes:
+     Fixed my bungled installation of Bader's patch allowing EPS previews
+     Fiddled with prg2lout.c hoping to fix its intermittent crash bug
+   Converted "non-zero exit status of filter" from a fatal error to a
+     warning, so the unfixed prg2lout error has fewer repercussions
+
+Changes and new features introduced in Version 3.39 [September 2010]
+
+   Bug fixes:
+     Fixed a problem with @IndexBText
+   Added copyright notices to many files, to satisfy the Savannah
+     people.  There is no change in what is permitted.  Files that
+     go to make up an output file are either public domain or else
+     carry this additional wording, supplied by the Savannah people:
+     "As a special exception, when this file is read by Lout when
+     processing a Lout source document, you may use the result
+     without restriction."
+
+   Things not done
+
+   It was suggested that using a version control system (in
+     particular, svn) would be a good idea.  I thought about
+     it but decided that there was too little change going on
+     to make it worth my while, at the moment anyway.
+
+Jeff Kingston

@@ -1,0 +1,5 @@
+gvim fmt
+gvim fmt_setu
+gvim fmt_size
+gvim fmt_marg
+gvim fmt_head

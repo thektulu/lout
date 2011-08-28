@@ -1,0 +1,104 @@
+@Section
+   @Title { Verbatim and piped text }
+   @Tag { verbatim }
+@Begin
+@PP
+The @Code "@Verbatim" symbol
+@FootNote {
+Prior to Version 3.13 the @Code "@Verbatim" symbol was restricted to Unix
+systems only.  This restriction no longer applies to @Code "@Verbatim" and
+{@Code "@RawVerbatim"}, but it does apply to {@Code "@Pipe"},
+{@Code "@PipeVerbatim"}, and {@Code "@PipeRawVerbatim"}.
+}
+prints the following object exactly as
+verbatim.sym @Index @Code "@Verbatim"
+it appears in the input file.  All special meanings for characters,
+symbols, etc. are turned off; there is one result line for
+each input line.  For example,
+@ID @Code @Verbatim {
+@IndentedDisplay @Verbatim {
+A line of "verbatim" text
+Another line, with a \ character
+}
+}
+has result
+@IndentedDisplay @Verbatim {
+A line of "verbatim" text
+Another line, with a \ character
+}
+Use @Code "@F @Verbatim { ... }" to get the result in a fixed-width font.
+@PP
+If the verbatim text contains @Code "{" or @Code "}" characters, then
+they should either be balanced or else you need to use the alternative
+form
+@ID @Code {
+"@Verbatim @Begin"
+"..."
+"@End @Verbatim"
+}
+so that there is no doubt about where the verbatim text ends.  Although
+we have said that there are no special meanings, there is one exception
+to this rule:  @Code "@Include" and @Code "@SysInclude" commands are
+recognized, allowing all or part of the verbatim text to come from some
+other file.  Braces do not have to be balanced in that file.
+@PP
+Occasionally the first line of some verbatim text begins with some
+spaces that have to be preserved.  This is a problem for @Code "@Verbatim"
+because it ignores all white spaces following the opening brace and
+all white spaces preceding the closing brace.  However, the alternative
+@Code "@RawVerbatim" symbol stops ignoring white spaces at the opening
+raw.verbatim.sym @Index @Code "@RawVerbatim"
+as soon as a newline character is reached; in other words, it will
+preserve all white spaces following the first newline.
+@PP
+The @Code "@Pipe" symbol (available on Unix-style systems only) may be
+pipe.sym @Index @Code "@Pipe"
+used to pipe some text through a Unix command.  For example,
+@ID @Code lines @Break @Verbatim {
+@ID lines @Break "sort" @Pipe {
+Gaskell, Elizabeth
+Lawrence, D. H.
+Austen, Jane
+Dickens, Charles
+}
+}
+will cause the object between braces following @Code "@Pipe" to be
+piped without interpretation through the Unix @Code "sort" command; its
+output is the result of the @Code "@Pipe" command, here made into a
+display preserving the line breaks in the output.  The final result will
+be the four authors, one per line, in alphabetical order.  We can't show
+this result to you because that would make this manual not compilable on
+non-Unix systems.
+@PP
+The double quotes around @Code sort are not necessary in this example,
+but may be in more complex ones.  For example, one can see just the
+first few lines of the sorted result using
+@ID @Code @Verbatim { "sort | head" @Pipe ... }
+and here the quotes are necessary because @Code "|" is one of the special
+characters that need quoting, according to Section {@NumberOf characters}.
+The quotes also serve to group the command into a single Lout object.
+@PP
+Some Unix commands don't need any input, and then the object following
+@Code "@Pipe" may be empty.  For example,
+@ID @Code @Verbatim { "ls" @Pipe {} }
+will list the files of the current directory.
+@PP
+Any Lout symbols in the result of the @Code "@Pipe" symbol, such as
+{@Code "@PP"}, {@Code "@Box"}, and so on, will be interpreted in the
+usual way.  This is convenient because it allows you to write your
+own Unix commands that include Lout symbols in their output.  However,
+sometimes it is preferable if the output is treated verbatim.  For
+example,
+@ID @Code @Verbatim { "pwd" @Pipe {} }
+attempts to print the current working directory, but this will not
+come out well because the output contains {@Code "/"} symbols, which
+Lout will then attempt to interpret as Lout symbols.  To avoid this
+problem, use @Code "@PipeVerbatim" instead of {@Code "@Pipe"}:
+pipeverbatim.sym @Index @Code "@PipeVerbatim"
+piperawverbatim.sym @Index @Code "@PipeRawVerbatim"
+@ID @Code @Verbatim { "pwd" @PipeVerbatim {} }
+This causes the output of the command to be enclosed in
+@Code "@Verbatim @Begin" and {@Code "@End @Verbatim"}.  There is
+also a @Code "@PipeRawVerbatim" symbol which encloses the output in
+@Code "@RawVerbatim" rather than the ordinary {@Code "@Verbatim"}.
+@End @Section

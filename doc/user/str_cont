@@ -1,0 +1,102 @@
+@Section
+   @Title { Tables of contents }
+   @Tag { contents }
+@Begin
+@PP
+Lout takes note of the titles of all your large-scale structure symbols
+contents. @Index { contents, tables of }
+tables.zzz.of.contents. @Index { tables of contents }
+(Section {@NumberOf largescale}) and what pages they begin on, and it
+uses this information to produce a table of contents like the one at
+the start of the present document.  It is totally automatic; you do
+nothing.
+@PP
+Some details of the appearance of the table of contents, including
+whether to make one or not, are controlled by options in the setup
+file.  The default setting is to make one in books but not to in
+other types of documents, but by changing the setup file you can have
+a table of contents in any type of document.
+@PP
+Section @NumberOf setup describes setup files in general and how to
+change the options within them.  The options relevant to tables of
+contents and their default values are:
+@ID @OneRow @Code @Verbatim {
+@MakeContents { No }
+@ContentsGap { 0.2v }
+@ContentsGapAbove { 0.8v }
+@ContentsGapBelow { 0.0v }
+@ContentsFont { Bold }
+@ContentsPartGapAbove { 1.0v }
+@ContentsPartGapBelow { 0.0v }
+@ContentsFormat { number @DotSep title }
+@ContentsLeader { .. }
+@ContentsLeaderGap { 4s }
+@ContentsRightWidth { 3f }
+}
+The @Code "@MakeContents" option may be @Code Yes or {@Code No}, and
+makecontents. @Index @Code "@MakeContents"
+determines whether a table of contents is made or not.  Its default
+value is @Code No but it is set to @Code Yes in the @Code book setup
+file.
+@PP
+@Code "@ContentsGap" determines how much vertical space to leave
+contentsgap. @Index @Code "@ContentsGap"
+above each line of the table of contents, in addition to the usual
+single line spacing; its value may be any length (Section
+{@NumberOf objects}).  The default value, {@Code "0.2v"}, is twenty
+percent of the current inter-line spacing.
+@PP
+Some entries, such as those for chapters and appendices in books, are
+more important than others.  @Code "@ContentsGap" does not apply to these
+entries; instead, @Code "@ContentsGapAbove" and @Code "@ContentsGapBelow"
+contentsgapabove. @Index @Code "@ContentsGapAbove"
+contentsgapbelow. @Index @Code "@ContentsGapBelow"
+are used above and below each of them, again in addition to the usual
+single line spacing.  @Code "@ContentsFont" also applies only to these
+`major entries', and determines their font.  The default value causes
+them to appear in Bold.
+@PP
+@Code "@ContentsPartGapAbove" and @Code "@ContentsPartGapBelow" are
+like @Code "@ContentsGapAbove" and @Code "@ContentsGapBelow", except
+that they are used before and after contents entries that denote
+book parts.
+@PP
+@Code "@ContentsFormat" determines the format of each entry of
+contentsformat. @Index @Code "@ContentsFormat"
+the table of contents.  Within it, @Code number stands for the
+number of the chapter, section, or whatever, and @Code title
+for its title.  The default value, {@Code "number @DotSep title"},
+produces the number followed by a dot, two spaces, and the title,
+or just the title if there is no number.
+@PP
+@Code "@ContentsLeader" is the object which is repeated across the page
+contentsleader. @Index @Code "@ContentsLeader"
+to connect each entry with its page number; popular values are @Code ".."
+and @Code "." and the empty object.  @Code "@ContentsLeaderGap" determines
+contentsleadergap. @Index @Code "@ContentsLeaderGap"
+how far apart these objects are; the default value, {@Code "4s"}, is
+four times the width of a space character.  @Code "@ContentsLeaderGap"
+may be {@Code "0s"}, but only if @Code "@ContentsLeader" is non-empty.
+@PP
+@Code "@ContentsRightWidth" reserves some
+contentsrightwidth. @Index @Code "@ContentsRightWidth"
+space at the far right for page numbers.  Any entry wide enough to
+intrude into this space is broken into two or more lines to keep it
+clear.
+@PP
+In addition to these options, each document type has options that
+determine which large-scale structure symbols will be listed in the
+table of contents.  For example, among the options to the
+@Code "@BookSetup" symbol in the @Code book setup file are these:
+@ID @OneRow @Code {
+"@ChapterInContents { Yes }"
+"@SectionInContents { Yes }"
+"@SubSectionInContents { Yes }"
+"@SubSubSectionInContents { No }"
+"@AppendixInContents { Yes }"
+"@SubAppendixInContents { Yes }"
+"@SubSubAppendixInContents { No }"
+}
+Each may be either {@Code "Yes"} or {@Code "No"}; these default values
+produce entries for everything except sub-subsections and sub-subappendices.
+@End @Section
